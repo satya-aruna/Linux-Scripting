@@ -8,3 +8,4 @@ elif [ $NUM -eq 25 ]; then
     echo "Number is equal to 25"
 else 
     echo "Nuber is less than 25"
+fi
