@@ -1,8 +1,11 @@
 #!/bin/bash
 
 NUM1=100
-NUM2=Aruna
+NUM2=200
+NUM3=Aruna
 
 SUM=$(($NUM1+$NUM2))
+DIFF=$(($NUM1-$NUM3))
 
-echo "Sum is: $SUM"
+echo "Sum of $NUM1 , $NUM2 is: $SUM"
+echo "Difference of $NUM1 , $NUM3 is: $DIFF"
