@@ -1,7 +1,7 @@
 #!/bin/bash
 
-PERSON1="Trump"  # usually variable names use all caps
-PERSON2="Putin"  # no space before and after =
+PERSON1=Trump  # usually variable names use all caps
+PERSON2=Putin  # no space before and after =
 
 # variables are referred with $ sign
 
