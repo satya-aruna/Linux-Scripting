@@ -33,7 +33,7 @@ do
     if [ $? -eq 1 ]; then
         echo -e "$B $pkg not installed. Installing now ... $N" | tee -a $LOGS_FILE
         dnf install $pkg -y &>> $LOGS_FILE   
-    elif [$? -eq 0 ]; then
+    elif [ $? -eq 0 ]; then
         echo -e " $Y $pkg already installed ... SKIPPING $N" | tee -a $LOGS_FILE
     else
         echo "DNF encountered a real error (Code: $?)."
