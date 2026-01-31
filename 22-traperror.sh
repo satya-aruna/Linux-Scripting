@@ -4,6 +4,7 @@ trap 'echo "An actual error occurred!"' ERR
 
 # Avoid triggering the trap if no package matches
 dnf list installed $1 &>/dev/null || echo "Package not found, but script continues."
+echo "dnf list installed status: $?"
 echo "Installing $1 ..."
 dnf install $1 -y
 if [ $? -eq 0 ]; then
