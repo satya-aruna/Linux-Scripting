@@ -28,9 +28,11 @@ for pkg in $@
 do
     echo "Checking $pkg already exists..." | tee -a $LOGS_FILE
     # Avoid triggering the trap if no package matches
-
-    dnf list installed $pkg | tee -a $LOGS_FILE &>/dev/null || echo "$pkg not found, but script continues."
+    trap - ERR        # Disable the ERR trap
+    dnf list installed $pkg | tee -a $LOGS_FILE &>/dev/null 
+    trap 'echo "There is an error in $LINENO, command: $BASH_COMMAND"' ERR #Re enable trap
     STATUS=$?
+    echo "status = $STATUS"
     if [ $STATUS -eq 1 ]; then
         echo -e "$B $pkg not installed. Installing now ... $N" | tee -a $LOGS_FILE
         dnf install $pkg -y &>> $LOGS_FILE   
