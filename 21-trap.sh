@@ -3,7 +3,7 @@
 # sihals ERR when there is an error
 # set -e # checks for errors while executing the script, if errors exits
 
-# trap 'echo "There is an error in $LINENO, command: $BASH_COMMAND"' ERR
+trap 'echo "There is an error in $LINENO, command: $BASH_COMMAND"' ERR
 
 # color codes in Linux, can be enabled with echo -e option
 R='\e[31m'
