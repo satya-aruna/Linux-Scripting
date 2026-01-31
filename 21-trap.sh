@@ -28,7 +28,7 @@ for pkg in $@
 do
     echo "Checking $pkg already exists..." | tee -a $LOGS_FILE
     # Avoid triggering the trap if no package matches
-    # trap - ERR        # Disable the ERR trap
+    trap - ERR        # Disable the ERR trap
     dnf list installed $pkg &>> $LOGS_FILE
     STATUS=$?
     echo "status = $STATUS"
@@ -41,6 +41,6 @@ do
         echo "DNF encountered a real error (Code: $STATUS)."
         exit $STATUS
     fi
-    # trap 'echo "There is an error in $LINENO, command: $BASH_COMMAND"' ERR
+    trap 'echo "There is an error in $LINENO, command: $BASH_COMMAND"' ERR
 
 done
