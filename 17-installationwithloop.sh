@@ -29,4 +29,3 @@ do
     dnf install $pkg -y &>> $LOGS_FILE
     VALIDATE $? "Installing $pkg"  
 done
-
