@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # sihals ERR when there is an error
-set -e # checks for errors while executing the script, if errors exits
+# set -e # checks for errors while executing the script, if errors exits
 
 trap 'echo "There is an error in $LINENO, command: $BASH_COMMAND"' ERR
 
