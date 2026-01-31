@@ -22,17 +22,17 @@ VALIDATE()
     fi
 }
 
-echo "Installing nginx" | tee -a $LOGS_FILE
+echo "Installing nginx ..." | tee -a $LOGS_FILE
 
 dnf install nginx -y &>> $LOGS_FILE
 VALIDATE $? "Installing Nginx"  
 
-echo "Installing mysql" | tee -a $LOGS_FILE
+echo "Installing mysql ..." | tee -a $LOGS_FILE
 
 dnf install mysql -y &>> $LOGS_FILE
 VALIDATE $? "Installing MySql"
 
-echo "Installing nodejs" | tee -a $LOGS_FILE
+echo "Installing nodejs ..." | tee -a $LOGS_FILE
 
 dnf install nodejs -y &>> $LOGS_FILE
 VALIDATE $? "Installing Nodejs"
