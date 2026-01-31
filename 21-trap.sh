@@ -29,7 +29,7 @@ do
     echo "Checking $pkg already exists..." | tee -a $LOGS_FILE
     # Avoid triggering the trap if no package matches
 
-    dnf list installed $pkg 2>/dev/null 1>> $LOGS_FILE
+    dnf list installed $pkg &>/dev/null
     if [ $? -eq 1 ]; then
         echo -e "$B $pkg not installed. Installing now ... $N" | tee -a $LOGS_FILE
 
