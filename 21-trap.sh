@@ -29,7 +29,7 @@ do
     echo "Checking $pkg already exists..." | tee -a $LOGS_FILE
     # Avoid triggering the trap if no package matches
     trap - ERR        # Disable the ERR trap
-    dnf list installed $pkg | tee -a $LOGS_FILE &>/dev/null 
+    dnf list installed $pkg | tee -a $LOGS_FILE
     STATUS=$?
     echo "status = $STATUS"
     if [ $STATUS -eq 1 ]; then
