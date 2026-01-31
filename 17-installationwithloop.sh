@@ -24,8 +24,14 @@ VALIDATE()
 
 for pkg in $@
 do
-    echo "Installing $pkg ..." | tee -a $LOGS_FILE
+    dnf list installed $pkg &>> $LOGS_FILE
+    if [ $? -ne 0 ]; then
+        echo "$pkg not installed. Installing now ..." | tee -a $LOGS_FILE
 
-    dnf install $pkg -y &>> $LOGS_FILE
-    VALIDATE $? "Installing $pkg"  
+        dnf install $pkg -y &>> $LOGS_FILE
+        VALIDATE $? "Installing $pkg"  
+    else
+        echo "$pkg already installed ... SKIPPING" | tee -a $LOGS_FILE
+
+    fi
 done
