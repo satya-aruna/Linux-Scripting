@@ -30,7 +30,6 @@ do
     # Avoid triggering the trap if no package matches
     trap - ERR        # Disable the ERR trap
     dnf list installed $pkg | tee -a $LOGS_FILE &>/dev/null 
-    trap 'echo "There is an error in $LINENO, command: $BASH_COMMAND"' ERR #Re enable trap
     STATUS=$?
     echo "status = $STATUS"
     if [ $STATUS -eq 1 ]; then
@@ -42,4 +41,6 @@ do
         echo "DNF encountered a real error (Code: $STATUS)."
         exit $STATUS
     fi
+    trap 'echo "There is an error in $LINENO, command: $BASH_COMMAND"' ERR
+
 done
