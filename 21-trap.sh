@@ -26,6 +26,7 @@ mkdir -p $LOGS_FOLDER
 
 for pkg in $@
 do
+    echo "Checking $pkg already exists..." | tee -a $LOGS_FILE
     dnf list installed $pkg &>> $LOGS_FILE
     if [ $? -ne 0 ]; then
         echo -e "$B $pkg not installed. Installing now ... $N" | tee -a $LOGS_FILE
