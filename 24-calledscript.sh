@@ -1,5 +1,5 @@
 #!/bin/bash
 
 echo "I am in $COUNTRY"
-echo "PID of Calling Script: $$"
+echo "PID of Called Script: $$"
 
