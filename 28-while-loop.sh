@@ -22,3 +22,13 @@ do
     ((count++))
 done
 
+FILES_LIST=$(ls)
+
+while IFS= read -r line; do
+    echo "$line"
+done <<< "$FILES_LIST"
+
+while IFS= read -r line; do
+    echo "Processing: $line"
+done < "25-sourcingscript.sh"
+
