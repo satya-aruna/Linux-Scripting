@@ -53,7 +53,28 @@ log "Source directory : $SOURCE_DIR"
 log "Destination directory : $DEST_DIR"
 log "DAYS : $DAYS"
 
-if [ -z $FILES ]; then
-    log "No files to archive "
+if [ -z "${FILES}" ]; then
+    log "No files to archive  $Y SKIPPING $N"
+else
+    # app-logs-$timestamp.zip
+    log "Files found to archive: $FILES"
+    TIMESTAMP=$(date +%F-%H-%M-%S)
+    ZIP_FILE_NAME="$DEST_DIR/app-logs-$TIMESTAMP.tar.gz"
+    echo "Archive name : $ZIP_FILE_NAME"
+    find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS | tar -zcvf $ZIP_FILE_NAME
+
+    #check archive is success or not
+    if [ -f $ZIP_FILE_NAME ]; then
+        log "Archieval is...$G SUCCESS $N"
+
+        while IFS= read -r filepath; 
+        do
+            echo "deleting file: $filepath"
+            rm -f $filepath
+            echo "deleted file: $filepath"
+        done <<< "$FILES_TO_DELETE"
+    else
+        log "Archieval is...$R FAILURE $N"
+    fi
 fi
 
