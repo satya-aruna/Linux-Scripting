@@ -12,15 +12,14 @@ LOG_FILE="$LOGDIR/$0.log"
 # Check if the directory exists
 
 if [ ! -d $LOG_DIR ]; then
-    echo  "$LOG_DIR does not exist" 
+    echo  "$LOG_DIR does not exist" &>> $LOG_FILE
     exit 1
 fi
 
 FILES_TO_DELETE=$(find $LOG_DIR -name "*.log" -mtime +14)
-echo "$FILES_TO_DELETE"
 
 while IFS= read -r filepath; do
-    echo "deleting file: $filepath"
+    echo "deleting file: $filepath" &>> $LOG_FILE
     rm -f $filepath
     echo "deleted file: $filepath"
 done <<< "$FILES_TO_DELETE"
