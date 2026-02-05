@@ -12,7 +12,7 @@ LOG_FILE="$LOGDIR/$0.log"
 # Check if the directory exists
 
 if [ ! -d LOG_DIR ]; then
-    echo -e "$LOG_DIR does not exist" &>> $LOG_FILE
+    echo  "$LOG_DIR does not exist" 
     exit 1
 fi
 
