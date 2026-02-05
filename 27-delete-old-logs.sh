@@ -21,7 +21,7 @@ FILES_TO_DELETE=$(find $LOG_DIR -name "*.log" -mtime +14)
 while IFS= read -r filepath; 
 do
     if [ -z $filepath ]; then
-        echo "No files older then 14 days to delete"
+        echo "No files older than 14 days to delete"
         break
     else
         echo "deleting file: $filepath"
