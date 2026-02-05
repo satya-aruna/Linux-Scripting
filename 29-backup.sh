@@ -44,6 +44,7 @@ if [ ! -d $DEST_DIR ]; then
     echo -e "$R Destination directory $DEST_DIR does not exist $N"
     exit 1
 fi 
+
 # Find the files
 FILES=$(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
 
@@ -52,7 +53,7 @@ log "Source directory : $SOURCE_DIR"
 log "Destination directory : $DEST_DIR"
 log "DAYS : $DAYS"
 
-if [ -z $FILES ];
+if [ -z $FILES ]; then
     log "No files to archive "
 fi
 
