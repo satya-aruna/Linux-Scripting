@@ -22,13 +22,13 @@ fi
 
 mkdir -p $LOGS_FOLDER
 
-USAGE() {
-    echo -e "$R sudo backup <SOURCE_DIR> <DEST_DIR> <DAYS>[default 14 days] $N"
-    exit 1
-}
-
 log() {
     echo -e "$(date "+%Y-%m-%d %H:%M:%S") | $1" | tee -a $LOGS_FILE
+}
+
+USAGE() {
+    log "$R sudo backup <SOURCE_DIR> <DEST_DIR> <DAYS>[default 14 days] $N"
+    exit 1
 }
 
 if [ $# -lt 2 ]; then
@@ -60,7 +60,7 @@ else
     log "Files found to archive: $FILES"
     TIMESTAMP=$(date +%F-%H-%M-%S)
     ZIP_FILE_NAME="$DEST_DIR/app-logs-$TIMESTAMP.tar.gz"
-    echo "Archive name : $ZIP_FILE_NAME"
+    log "Archive name : $ZIP_FILE_NAME"
     tar -zcvf $ZIP_FILE_NAME $(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
 
     #check archive is success or not
@@ -69,9 +69,9 @@ else
 
         while IFS= read -r filepath; 
         do
-            echo "deleting file: $filepath"
+            log "deleting file: $filepath"
             rm -f $filepath
-            echo "deleted file: $filepath"
+            log "deleted file: $filepath"
         done <<< "$FILES"
     else
         log "Archieval is...$R FAILURE $N"
