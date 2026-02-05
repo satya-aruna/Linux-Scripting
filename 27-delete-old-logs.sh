@@ -6,12 +6,12 @@ Y='\e[33m'
 B='\e[34m'
 N='\e[0m'
 
-LOG_DIR=/home/ec2-user/app-logs
+LOG_DIR="/home/ec2-user/app-logs"
 LOG_FILE="$LOGDIR/$0.log"
 
 # Check if the directory exists
 
-if [ ! -d LOG_DIR ]; then
+if [ ! -d $LOG_DIR ]; then
     echo  "$LOG_DIR does not exist" 
     exit 1
 fi
